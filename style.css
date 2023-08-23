@@ -1,0 +1,25 @@
+. {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.display {
+    width: 100%;
+    height: 50px;
+    border: solid;
+}
+.container {
+    max-width: 200px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+}
