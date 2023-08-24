@@ -24,8 +24,23 @@ function operate(fNum,op,sNum) {
             null;
 }
 
-let output = document.querySelector('.input-container');
-output.textContent = 'hello'
-output.
-let container = document.querySelector('.container');
-container.style.backgroundColor = 'red';
+const display = document.querySelector('.display');
+display.textContent = '';
+
+let clicked = [];
+let result = 0;
+function saveDisplay () {
+    clicked.push(this.textContent);
+    if(clicked.length >= 3) {
+        result = operate(parseInt(clicked[0]),clicked[1],parseInt(clicked[2]));
+        clicked[0] = result;
+        clicked.splice(1,2);
+    }
+        display.textContent = clicked[0];
+    
+}
+
+const buttons = document.querySelectorAll('.buttonOutput');
+buttons.forEach(button => {
+    button.addEventListener('click', saveDisplay)
+})
