@@ -16,7 +16,7 @@ function divide(a,b) {
     return a / b;
 }
 
-function operate(fNum,op,sNum) {
+function operate(fNum=0,op,sNum=0) {
     return  (op === '+') ? add(fNum,sNum) :
             (op === '-') ? substract(fNum,sNum) :
             (op === '*') ? multiply(fNum,sNum) :
@@ -49,11 +49,16 @@ function saveDisplay () {
     }
 
 // perform  math operation once the required elements are available
-        if(clicked.length >= 4) {
+        if(clicked.length >= 4 || (clicked.length >= 3 && clicked[clicked.length-1] === '=')) {
             result = operate(parseInt(clicked[0]),clicked[1],parseInt(clicked[2]));
             clicked[0] = result;
-            clicked.splice(1,2);
+            if(clicked[clicked.length-1]=== '=') {
+                clicked.splice(1,3);
+            } else {
+                clicked.splice(1,2);
+            }
         }
+
         for (click of clicked) {
             display.textContent += `${click} `;
         }
