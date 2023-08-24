@@ -24,5 +24,8 @@ function operate(fNum,op,sNum) {
             null;
 }
 
-let display = document.querySelector('.display');
-display.style.innerHtml = 'hello';
+let output = document.querySelector('.input-container');
+output.textContent = 'hello'
+output.
+let container = document.querySelector('.container');
+container.style.backgroundColor = 'red';
