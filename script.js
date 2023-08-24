@@ -24,3 +24,5 @@ function operate(fNum,op,sNum) {
             null;
 }
 
+let display = document.querySelector('.display');
+display.style.innerHtml = 'hello';
