@@ -25,28 +25,36 @@ function operate(fNum,op,sNum) {
 }
 
 const display = document.querySelector('.display');
-display.textContent = '';
+
 
 let clicked = [];
 let result = 0;
 function saveDisplay () {
+    display.textContent = '';
+
     clicked.push(this.textContent);
     if(clicked.length >= 2) {
         if(isNaN(parseInt(clicked[clicked.length-1])) === isNaN(parseInt(clicked[clicked.length-2]))) {
-            let combiner = clicked.slice(clicked.length-2);
+            let combiner = clicked.slice(clicked.length-2).join('');
             clicked.splice(clicked.length-2,2);
             clicked.push(combiner);
+
+            console.log('combiner');
+            console.log(combiner);
+            console.log('combiner');
         }
     }
 
-    if(!isNaN(parseInt(clicked[clicked.length-1]))){
-        if(clicked.length >= 3) {
+    // if(!isNaN(parseInt(clicked[clicked.length-1])) && clicked.length ===4){
+        if(clicked.length >= 4) {
             result = operate(parseInt(clicked[0]),clicked[1],parseInt(clicked[2]));
             clicked[0] = result;
             clicked.splice(1,2);
         }
-        display.textContent = clicked[0];
-    }
+        for (click of clicked) {
+            display.textContent += `${click} `;
+        }
+    // }
     console.log(clicked);
 }
 
