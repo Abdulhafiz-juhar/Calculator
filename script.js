@@ -65,7 +65,16 @@ function saveDisplay () {
     console.log(clicked);
 }
 
+function reset() {
+    clicked = [];
+    result = 0;
+    display.textContent = '';
+}
+
 const buttons = document.querySelectorAll('.buttonOutput');
 buttons.forEach(button => {
     button.addEventListener('click', saveDisplay)
 })
+
+const clear = document.querySelector('.clear');
+clear.addEventListener('click', reset);
