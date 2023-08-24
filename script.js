@@ -33,6 +33,9 @@ function saveDisplay () {
     display.textContent = '';
 
     clicked.push(this.textContent);
+
+// For concating consequetive numbers in array if multiple digit
+// is entered
     if(clicked.length >= 2) {
         if(isNaN(parseInt(clicked[clicked.length-1])) === isNaN(parseInt(clicked[clicked.length-2]))) {
             let combiner = clicked.slice(clicked.length-2).join('');
@@ -45,7 +48,7 @@ function saveDisplay () {
         }
     }
 
-    // if(!isNaN(parseInt(clicked[clicked.length-1])) && clicked.length ===4){
+// perform  math operation once the required elements are available
         if(clicked.length >= 4) {
             result = operate(parseInt(clicked[0]),clicked[1],parseInt(clicked[2]));
             clicked[0] = result;
@@ -54,7 +57,6 @@ function saveDisplay () {
         for (click of clicked) {
             display.textContent += `${click} `;
         }
-    // }
     console.log(clicked);
 }
 
