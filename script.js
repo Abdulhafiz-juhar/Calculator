@@ -31,6 +31,13 @@ let clicked = [];
 let result = 0;
 function saveDisplay () {
     clicked.push(this.textContent);
+    // if(clicked.length >= 2) {
+    //     if(isNaN(parseInt(clicked[clicked.length-1])) === isNaN(parseInt(clicked[clicked.length-2]))) {
+    //         let combiner = clicked.slice(clicked.length-2);
+    //         clicked.splice(clicked.length-2,2);
+    //         clicked.push(combiner);
+    //     }
+    // }
     if(clicked.length >= 3) {
         result = operate(parseInt(clicked[0]),clicked[1],parseInt(clicked[2]));
         clicked[0] = result;
