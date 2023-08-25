@@ -63,10 +63,14 @@ function saveDisplay () {
                 clicked.splice(1,2);
             }
         }
-
-        for (click of clicked) {
-            display.textContent += `${click} `;
+        if(!isNaN(clicked[0])) {
+            for (click of clicked) {
+                display.textContent += `${click} `;
+            }
+        } else {
+            clicked.pop();
         }
+            
     console.log(clicked);
 }
 
