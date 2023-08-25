@@ -62,7 +62,7 @@ function saveDisplay () {
             // if(clicked[1] === '=') {
             //     result = clicked[0];
             // } else {
-                result = operate(parseInt(clicked[0]),clicked[1],parseInt(clicked[2]));
+                result = operate(Number(clicked[0]),clicked[1],Number(clicked[2]));
             // }
                 
             clicked[0] = result;
