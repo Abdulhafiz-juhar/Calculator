@@ -31,7 +31,6 @@ let clicked = [];
 let result = 0;
 function saveDisplay () {
     display.textContent = '';
-
     clicked.push(this.textContent);
 
 // For concating consequetive numbers in array if multiple digit
@@ -53,9 +52,19 @@ function saveDisplay () {
         }
     }
 
+//check if '=' is entered just after one number
+    if(clicked.length >= 2 && clicked[1] === '=') {
+        clicked.pop();
+    }
+
 // perform  math operation once the required elements are available
         if(clicked.length >= 4 || (clicked.length >= 3 && clicked[clicked.length-1] === '=')) {
-            result = operate(parseInt(clicked[0]),clicked[1],parseInt(clicked[2]));
+            // if(clicked[1] === '=') {
+            //     result = clicked[0];
+            // } else {
+                result = operate(parseInt(clicked[0]),clicked[1],parseInt(clicked[2]));
+            // }
+                
             clicked[0] = result;
             if(clicked[clicked.length-1]=== '=') {
                 clicked.splice(1,3);
@@ -63,6 +72,7 @@ function saveDisplay () {
                 clicked.splice(1,2);
             }
         }
+
         if(!isNaN(clicked[0])) {
             for (click of clicked) {
                 display.textContent += `${click} `;
