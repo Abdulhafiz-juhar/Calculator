@@ -63,6 +63,7 @@ function saveDisplay () {
             //     result = clicked[0];
             // } else {
                 result = operate(Number(clicked[0]),clicked[1],Number(clicked[2]));
+                result = Math.floor(result * 10) / 10;
             // }
                 
             clicked[0] = result;
