@@ -38,13 +38,18 @@ function saveDisplay () {
 // is entered
     if(clicked.length >= 2) {
         if(isNaN(parseInt(clicked[clicked.length-1])) === isNaN(parseInt(clicked[clicked.length-2]))) {
-            let combiner = clicked.slice(clicked.length-2).join('');
-            clicked.splice(clicked.length-2,2);
-            clicked.push(combiner);
+            if(!isNaN(parseInt(clicked[clicked.length-1]))) {
+                let combiner = clicked.slice(clicked.length-2).join('');
+                clicked.splice(clicked.length-2,2);
+                clicked.push(combiner);
 
-            console.log('combiner');
-            console.log(combiner);
-            console.log('combiner');
+                console.log('combiner');
+                console.log(combiner);
+                console.log('combiner');
+            } else {
+                clicked[clicked.length-2] = clicked[clicked.length-1];
+                clicked.pop();
+            }
         }
     }
 
