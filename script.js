@@ -59,13 +59,14 @@ function saveDisplay () {
 
 // perform  math operation once the required elements are available
         if(clicked.length >= 4 || (clicked.length >= 3 && clicked[clicked.length-1] === '=')) {
-            // if(clicked[1] === '=') {
-            //     result = clicked[0];
-            // } else {
                 result = operate(Number(clicked[0]),clicked[1],Number(clicked[2]));
-                result = Math.floor(result * 10) / 10;
-            // }
-                
+            //check if result has more than one decimal
+            if (Math.round(result * 100) % 100 === 0) {
+                result = Math.round(result);
+              } else {
+                result = Math.round(result * 100) / 100;
+              }
+
             clicked[0] = result;
             if(clicked[clicked.length-1]=== '=') {
                 clicked.splice(1,3);
