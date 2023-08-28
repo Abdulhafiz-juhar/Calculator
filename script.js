@@ -33,6 +33,20 @@ function saveDisplay () {
     display.textContent = '';
     clicked.push(this.textContent);
 
+// 0 before number checker
+    if(clicked.length >=2) {
+        if(clicked[0] === '0' && !isNaN(parseInt(clicked[1]))) {
+            clicked[0] = clicked[1];
+            clicked.pop();
+        }
+
+        if(clicked[2] === '0' && !isNaN(parseInt(clicked[3]))) {
+            clicked[2] = clicked[3];
+            clicked.pop();
+        }
+    }    
+
+
 // For concating consequetive numbers in array if multiple digit
 // is entered
     if(clicked.length >= 2) {
