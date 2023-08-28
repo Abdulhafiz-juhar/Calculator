@@ -25,7 +25,7 @@ function operate(fNum=0,op,sNum=0) {
 }
 
 const display = document.querySelector('.display');
-
+const dot = document.querySelector('.dot');
 
 let clicked = [];
 let result = 0;
@@ -35,6 +35,17 @@ function reset() {
     clicked = [];
     result = 0;
     display.textContent = '';
+}
+
+// turn off dot button when a dot per one element exists or if element
+// is operator
+function turnoffDot(element) {
+    if(!isNaN(parseFloat(element))){
+        let stringElem = element.toString();
+        return stringElem.split('').some(char => char === '.');
+    } else {
+        return true;
+    } 
 }
 
 function saveDisplay () {
@@ -65,7 +76,7 @@ function saveDisplay () {
 
 
 // For concating consequetive numbers in array if multiple digit
-// is entered
+// is entered (check dot too)
     if(clicked.length >= 2) {
         if(!isNaN(parseInt(clicked[clicked.length-1])) === !isNaN(parseInt(clicked[clicked.length-2])) || (!isNaN(parseInt(clicked[clicked.length-2])) && clicked[clicked.length-1] === '.')) {
             if(!isNaN(parseInt(clicked[clicked.length-1])) || clicked[clicked.length-1] === '.') {
@@ -103,6 +114,7 @@ function saveDisplay () {
                 clicked.splice(1,3);
                 // track to clear result when new number is entered after result
                 clearResult = true;
+                
             } else {
                 clicked.splice(1,2);
             }
@@ -115,7 +127,20 @@ function saveDisplay () {
         } else {
             clicked.pop();
         }
-            
+
+// toggle dot button
+        if(!turnoffDot(clicked[clicked.length-1])) {
+            if(!dot.hasAttribute('savedDisplay')) {
+                dot.addEventListener('click', saveDisplay);
+                dot.setAttribute('saveDisplay','true');
+            }
+        } else {
+            if(dot.hasAttribute('saveDisplay')) {
+                dot.removeEventListener('click',saveDisplay);
+                dot.removeAttribute('saveDisplay');
+            }
+        }
+          
     console.log(clicked);
 }
 
@@ -126,4 +151,3 @@ buttons.forEach(button => {
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', reset);
-
