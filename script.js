@@ -114,7 +114,6 @@ function saveDisplay () {
                 clicked.splice(1,3);
                 // track to clear result when new number is entered after result
                 clearResult = true;
-                
             } else {
                 clicked.splice(1,2);
             }
@@ -151,3 +150,7 @@ buttons.forEach(button => {
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', reset);
+
+
+//issue
+//dot doesn't clear the result as the numbers
