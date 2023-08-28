@@ -29,7 +29,22 @@ const display = document.querySelector('.display');
 
 let clicked = [];
 let result = 0;
+let clearResult = false;
+
+function reset() {
+    clicked = [];
+    result = 0;
+    display.textContent = '';
+}
+
 function saveDisplay () {
+
+// check if new calculation is started after result
+    if(clearResult) {
+        reset();
+        clearResult = false;
+    }
+
     display.textContent = '';
     clicked.push(this.textContent);
 
@@ -84,6 +99,8 @@ function saveDisplay () {
             clicked[0] = result;
             if(clicked[clicked.length-1]=== '=') {
                 clicked.splice(1,3);
+                // track to clear result when new number is entered after result
+                clearResult = true;
             } else {
                 clicked.splice(1,2);
             }
@@ -98,12 +115,6 @@ function saveDisplay () {
         }
             
     console.log(clicked);
-}
-
-function reset() {
-    clicked = [];
-    result = 0;
-    display.textContent = '';
 }
 
 const buttons = document.querySelectorAll('.buttonOutput');
