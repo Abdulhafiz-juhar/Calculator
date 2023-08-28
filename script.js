@@ -126,3 +126,4 @@ buttons.forEach(button => {
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', reset);
+
