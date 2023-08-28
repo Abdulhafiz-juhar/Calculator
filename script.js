@@ -41,7 +41,9 @@ function saveDisplay () {
 
 // check if new calculation is started after result
     if(clearResult) {
-        reset();
+        if(!isNaN(parseInt(this.textContent))) {
+            reset();
+        }
         clearResult = false;
     }
 
@@ -65,8 +67,8 @@ function saveDisplay () {
 // For concating consequetive numbers in array if multiple digit
 // is entered
     if(clicked.length >= 2) {
-        if(isNaN(parseInt(clicked[clicked.length-1])) === isNaN(parseInt(clicked[clicked.length-2]))) {
-            if(!isNaN(parseInt(clicked[clicked.length-1]))) {
+        if(!isNaN(parseInt(clicked[clicked.length-1])) === !isNaN(parseInt(clicked[clicked.length-2])) || (!isNaN(parseInt(clicked[clicked.length-2])) && clicked[clicked.length-1] === '.')) {
+            if(!isNaN(parseInt(clicked[clicked.length-1])) || clicked[clicked.length-1] === '.') {
                 let combiner = clicked.slice(clicked.length-2).join('');
                 clicked.splice(clicked.length-2,2);
                 clicked.push(combiner);
