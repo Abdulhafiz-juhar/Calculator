@@ -193,5 +193,4 @@ const backspace = document.querySelector('.backspace');
 backspace.addEventListener('click',() => handleBackspace(clicked));
 
 //issue
-//entering operand just after . is allowed
 //dot doesn't clear the result as the numbers
