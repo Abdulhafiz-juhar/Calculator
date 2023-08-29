@@ -48,6 +48,30 @@ function turnoffDot(element) {
     } 
 }
 
+function handleTurnoffButton(statusFunc,array,element,executeFunc) {
+    if(!statusFunc(array[array.length-1])) {
+        if(!element.hasAttribute(`${executeFunc.name}`)) {
+            element.addEventListener('click', executeFunc);
+            element.setAttribute(`${executeFunc.name}`,'true');
+        }
+    } else {
+        if(element.hasAttribute(`${executeFunc.name}`)) {
+            element.removeEventListener('click',executeFunc);
+            element.removeAttribute(`${executeFunc.name}`);
+        }
+    }
+}
+
+function displayResult(element, array) {
+    if(!isNaN(array[0])) {
+        for (current of array) {
+            element.textContent += `${current} `;
+        }
+    } else {
+        array.pop();
+    }
+}
+
 function saveDisplay () {
 
 // check if new calculation is started after result
@@ -119,28 +143,42 @@ function saveDisplay () {
             }
         }
 
-        if(!isNaN(clicked[0])) {
-            for (click of clicked) {
-                display.textContent += `${click} `;
-            }
-        } else {
-            clicked.pop();
-        }
+        
+    displayResult(display,clicked);
 
 // toggle dot button
-        if(!turnoffDot(clicked[clicked.length-1])) {
-            if(!dot.hasAttribute('savedDisplay')) {
-                dot.addEventListener('click', saveDisplay);
-                dot.setAttribute('saveDisplay','true');
-            }
-        } else {
-            if(dot.hasAttribute('saveDisplay')) {
-                dot.removeEventListener('click',saveDisplay);
-                dot.removeAttribute('saveDisplay');
-            }
-        }
+    handleTurnoffButton(turnoffDot,clicked,dot,saveDisplay);
+        
           
     console.log(clicked);
+}
+
+function handleBackspace(arr) {
+    let element = arr[arr.length-1];
+
+    if(isNaN(element)){
+        arr.pop();
+        display.textContent = '';
+        displayResult(display,clicked);
+        handleTurnoffButton(turnoffDot,clicked,dot,saveDisplay);
+    } else {
+        let newElement;
+        let splittedElement = element.split('');
+        if(splittedElement.length === 1) {
+            arr.pop();
+            display.textContent = '';
+            displayResult(display,clicked);
+            handleTurnoffButton(turnoffDot,clicked,dot,saveDisplay);
+        } else {
+            splittedElement.pop();
+            newElement = splittedElement.join('');
+            arr.pop();
+            arr.push(newElement);
+            display.textContent = '';
+            displayResult(display,clicked);
+            handleTurnoffButton(turnoffDot,clicked,dot,saveDisplay);
+        }
+    }
 }
 
 const buttons = document.querySelectorAll('.buttonOutput');
@@ -151,6 +189,9 @@ buttons.forEach(button => {
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', reset);
 
+const backspace = document.querySelector('.backspace');
+backspace.addEventListener('click',() => handleBackspace(clicked));
 
 //issue
+//entering operand just after . is allowed
 //dot doesn't clear the result as the numbers
