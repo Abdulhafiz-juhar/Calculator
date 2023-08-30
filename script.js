@@ -204,6 +204,7 @@ window.addEventListener('keydown', function(e) {
         } else if(e.key === 'Delete') {
             reset();
         } else if(e.key === 'Enter') {
+            e.preventDefault();
             var newEvent = new KeyboardEvent('keydown', { key: '=' });
             saveDisplay(newEvent);
         } else {
