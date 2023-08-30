@@ -72,18 +72,18 @@ function displayResult(element, array) {
     }
 }
 
-function saveDisplay () {
-
+function saveDisplay (e) {
+    let input = e.key || this.textContent
 // check if new calculation is started after result
     if(clearResult) {
-        if(!isNaN(parseInt(this.textContent))) {
+        if(!isNaN(parseInt(input))) {
             reset();
         }
         clearResult = false;
     }
 
     display.textContent = '';
-    clicked.push(this.textContent);
+    clicked.push(input);
 
 // 0 before number checker
     if(clicked.length >=2) {
@@ -192,5 +192,24 @@ clear.addEventListener('click', reset);
 const backspace = document.querySelector('.backspace');
 backspace.addEventListener('click',() => handleBackspace(clicked));
 
+
+//keyboard
+let allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '=', '+', '.', '-', '*', '/', 'Backspace','Enter','Delete'];
+
+window.addEventListener('keydown', function(e) {
+    if(allowedKeys.includes(e.key)) {
+        if(e.key === 'Backspace') {
+            handleBackspace(clicked);
+        } else if(e.key === 'Delete') {
+            reset();
+        } else if(e.key === 'Enter') {
+            e = '=';
+            saveDisplay(e);
+        } else {
+            saveDisplay(e);
+        }
+    }
+});
 //issue
 //dot doesn't clear the result as the numbers
+//backspace has issue removeing result as it does other numbers
