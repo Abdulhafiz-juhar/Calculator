@@ -214,4 +214,5 @@ window.addEventListener('keydown', function(e) {
 //issue
 //dot doesn't clear the result as the numbers(imporved)
     //now it addes the dot to the result
-
+//can't input negative number first
+//divide by 0 gives infinity instead of snarky message
