@@ -133,6 +133,7 @@ function saveDisplay (e) {
                 result = Math.round(result * 100) / 100;
               }
 
+            result = result.toString();
             clicked[0] = result;
             if(clicked[clicked.length-1]=== '=') {
                 clicked.splice(1,3);
@@ -155,7 +156,7 @@ function saveDisplay (e) {
 
 function handleBackspace(arr) {
     let element = arr[arr.length-1];
-
+    console.log(element);
     if(isNaN(element)){
         arr.pop();
         display.textContent = '';
@@ -212,4 +213,4 @@ window.addEventListener('keydown', function(e) {
 });
 //issue
 //dot doesn't clear the result as the numbers
-//backspace has issue removeing result as it does other numbers
+
