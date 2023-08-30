@@ -167,6 +167,11 @@ function saveDisplay(e) {
 }
 
 function handleBackspace(arr) {
+  //don't clear result if backspace is clicked
+  if (clearResult) {
+    clearResult = false;
+  }
+
   let element = arr[arr.length - 1];
   console.log(element);
   if (isNaN(element)) {
