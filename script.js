@@ -204,13 +204,14 @@ window.addEventListener('keydown', function(e) {
         } else if(e.key === 'Delete') {
             reset();
         } else if(e.key === 'Enter') {
-            e = '=';
-            saveDisplay(e);
+            var newEvent = new KeyboardEvent('keydown', { key: '=' });
+            saveDisplay(newEvent);
         } else {
             saveDisplay(e);
         }
     }
 });
 //issue
-//dot doesn't clear the result as the numbers
+//dot doesn't clear the result as the numbers(imporved)
+    //now it addes the dot to the result
 
