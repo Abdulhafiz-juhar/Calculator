@@ -242,13 +242,13 @@ let allowedKeys = [
 ];
 
 window.addEventListener("keydown", function (e) {
+  e.preventDefault();
   if (allowedKeys.includes(e.key)) {
     if (e.key === "Backspace") {
       handleBackspace(clicked);
     } else if (e.key === "Delete") {
       reset();
     } else if (e.key === "Enter") {
-      e.preventDefault();
       var newEvent = new KeyboardEvent("keydown", { key: "=" });
       saveDisplay(newEvent);
     } else {
@@ -263,4 +263,4 @@ window.addEventListener("keydown", function (e) {
 //can't input negative number first x
 // (this shouldn't be allowed) instead put +/- button on later update x
 
-//divide by 0 gives infinity instead of snarky message
+//divide by 0 gives infinity instead of snarky message (fixed)
