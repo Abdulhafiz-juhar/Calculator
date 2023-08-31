@@ -94,3 +94,8 @@ button {
   font-style: italic;
   text-shadow: 2px 2px 4px rgb(0, 146, 199);
 }
+
+button:active,
+.nonOperand:active {
+  background-color: transparent;
+}
