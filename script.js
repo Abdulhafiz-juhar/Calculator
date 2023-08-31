@@ -139,6 +139,14 @@ function saveDisplay(e) {
     clicked.length >= 4 ||
     (clicked.length >= 3 && clicked[clicked.length - 1] === "=")
   ) {
+    //check division by zero
+    if (clicked[1] === "/" && clicked[2] === "0") {
+      clicked.splice(0, clicked.length);
+      display.textContent = "Hehe, Not allowed!";
+      clearResult = true;
+      return;
+    }
+
     result = operate(Number(clicked[0]), clicked[1], Number(clicked[2]));
     //check if result has more than one decimal
     if (Math.round(result * 100) % 100 === 0) {
@@ -249,7 +257,10 @@ window.addEventListener("keydown", function (e) {
   }
 });
 //issue
-//dot doesn't clear the result as the numbers(imporved)
-//now it addes the dot to the result
-//can't input negative number first
+//dot doesn't clear the result as the numbers(imporved) x
+//  now it addes the dot to the result (this actually can be considered as a feature) x
+
+//can't input negative number first x
+// (this shouldn't be allowed) instead put +/- button on later update x
+
 //divide by 0 gives infinity instead of snarky message
