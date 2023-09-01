@@ -37,15 +37,17 @@ body {
   border: solid;
   padding: 1em;
   border-radius: 3%;
+
+  flex: 0 1 auto;
+  height: 436px;
+  display: flex;
 }
 .calculator-container {
-  width: 400px;
+  /* width: 400px; */
   display: flex;
   flex-direction: column;
   gap: 0.2em;
   /* background-color: white; */
-
-  height: 400px;
 }
 
 .first-row,
@@ -58,10 +60,13 @@ body {
   justify-content: space-evenly;
   gap: 0.5em;
   flex: 1;
+
+  min-height: 35px;
+  min-width: 100px;
 }
 
 .button {
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   justify-content: center;
 }
